@@ -1,17 +1,28 @@
 import "./index.scss";
 
-const sounds = [
-  { id: 1, title: "Rain" },
-  { id: 2, title: "Summer" },
-  { id: 3, title: "Winter" },
-];
+const rainBtn = document.querySelector("#rain");
+const summerBtn = document.querySelector("#summer");
+const winterBtn = document.querySelector("#winter");
+const background = document.querySelector("#background");
+const volume = document.querySelector("#volume");
+let audio = document.querySelector("audio");
 
-const root = document.querySelector("#sounds-list");
+rainBtn.addEventListener("click", onItemClick);
+summerBtn.addEventListener("click", onItemClick);
+winterBtn.addEventListener("click", onItemClick);
+volume.addEventListener("click", onVolumeClick);
 
-function renderItem(item) {
-  const li = document.createElement("li");
-  li.textContent = item.title;
-  root.append(li);
+let activeItem = "";
+
+function onVolumeClick(event) {
+  console.log("event", event);
+  audio.volume = volume.value;
+  audio.play();
 }
 
-sounds.forEach(renderItem);
+function onItemClick(event) {
+  !activeItem
+    ? background.classList.add(event.target.id)
+    : background.classList.replace(activeItem, event.target.id);
+  activeItem = event.target.id;
+}
