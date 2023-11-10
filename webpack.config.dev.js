@@ -1,3 +1,4 @@
+const ESLintPlugin = require("eslint-webpack-plugin");
 const { merge } = require("webpack-merge");
 const commonConfig = require("./webpack.config.common");
 
@@ -9,4 +10,9 @@ module.exports = merge(commonConfig, {
     hot: true,
     open: true,
   },
+  plugins: [
+    new ESLintPlugin({
+      overrideConfigFile: ".eslintrc.json",
+    }),
+  ],
 });

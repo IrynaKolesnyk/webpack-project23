@@ -12,13 +12,13 @@
     <h1 class="title">Weather sounds</h1>
     <ul class="soundsList">
       <li class="summerItem" id="summer">
-        <div class="summerIcon"></div>
+        <div class="icon summerIcon"></div>
       </li>
       <li class="rainItem" id="rain">
-        <div class="rainIcon"></div>
+        <div class="icon rainIcon"></div>
       </li>
       <li class="winterItem" id="winter">
-        <div class="winterIcon"></div>
+        <div class="icon winterIcon"></div>
       </li>
     </ul>
     <input
@@ -30,17 +30,5 @@
       class="volume"
       id="volume"
     />
-    <iframe
-      src="../src/sounds/rain.mp3"
-      allow="autoplay"
-      id="audio"
-      height="0"
-      width="0"
-      frameborder="0"
-    ></iframe>
-
-    <audio id="audio" autoplay loop="loop">
-      <source src="../src/sounds/rain.mp3" />
-    </audio>
   </body>
 </html>

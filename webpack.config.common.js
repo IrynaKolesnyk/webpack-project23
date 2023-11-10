@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -27,9 +26,6 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin(),
-    new ESLintPlugin({
-      overrideConfigFile: ".eslintrc.json",
-    }),
   ],
   module: {
     rules: [
@@ -44,6 +40,10 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.mp3$/,
+        loader: "file-loader",
       },
     ],
   },
