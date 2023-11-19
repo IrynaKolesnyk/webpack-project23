@@ -1,14 +1,17 @@
+// @ts-ignore
 import soundRain from "./sounds/rain.mp3";
+// @ts-ignore
 import soundSummer from "./sounds/summer.mp3";
+// @ts-ignore
 import soundWinter from "./sounds/winter.mp3";
 
 import "./index.scss";
 
-const rainItem = document.querySelector("#rain");
-const summerItem = document.querySelector("#summer");
-const winterItem = document.querySelector("#winter");
-const background = document.querySelector("#background");
-const volume = document.querySelector("#volume");
+const rainItem = document.querySelector("#rain") as HTMLBodyElement;
+const summerItem = document.querySelector("#summer") as HTMLBodyElement;
+const winterItem = document.querySelector("#winter") as HTMLBodyElement;
+const background = document.querySelector("#background") as HTMLBodyElement;
+const volume = document.querySelector("#volume") as HTMLInputElement;
 
 rainItem.addEventListener("click", onItemClick);
 summerItem.addEventListener("click", onItemClick);
@@ -20,7 +23,7 @@ const songs = [soundSummer, soundRain, soundWinter];
 const items = [summerItem, rainItem, winterItem];
 let activeItem = "";
 
-function itemIndex(itemName) {
+function itemIndex(itemName: string) {
   switch (itemName) {
     case "summer":
       return 0;
@@ -28,10 +31,11 @@ function itemIndex(itemName) {
       return 1;
     case "winter":
       return 2;
-  }
+    }
+    return 0;
 }
 
-function playPauseSong(name) {
+function playPauseSong(name: string) {
   const itemIdx = itemIndex(name);
   const isPlay = items[itemIdx].classList.contains("play");
 
@@ -53,17 +57,18 @@ function playPauseSong(name) {
 }
 
 function onVolumeClick() {
-  audio.volume = volume.value;
+  audio.volume = +volume.value;
 }
 
-function setSong(itemName) {
+function setSong(itemName: string) {
   if (activeItem === itemName) return;
   const indexSong = itemIndex(itemName);
   audio.setAttribute("src", songs[indexSong]);
 }
 
-function onItemClick(event) {
-  const item = event.currentTarget.id;
+function onItemClick(event: MouseEvent) {
+    const { currentTarget } = event;
+  const item = (currentTarget as HTMLButtonElement).id;
 
   !activeItem
     ? background.classList.add(item)
